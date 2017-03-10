@@ -1,0 +1,9 @@
+1. Rendez vous sur https://pypi.python.org/pypi/Pillow/3.1.1
+
+2. Selectionnez le fichier adéquat pour votre distribution
+
+3. Decompressez utils.zip disponible sur chamilo
+
+4. Lancez example.py
+
+Note : si un message d'erreur dit que l'image n'est pas trouvee, incluez le chemin absolu vers celle-ci.
