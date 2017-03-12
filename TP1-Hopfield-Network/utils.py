@@ -1,7 +1,9 @@
-import os,sys
+import os
+import sys
 from PIL import Image as PIL_Image
 import random
 import numpy as np
+
 
 # Class representing an image
 class Image:
@@ -20,10 +22,10 @@ class Image:
         pixels = img.load()
         for i in range(self.dim[0]):
             for j in range(self.dim[1]):
-                if pixels[(i,j)] == 0 :
-                    self.values[i,j] = -1
-                else :
-                    self.values[i,j] = pixels[(i,j)]
+                if pixels[(i, j)] == 0:
+                    self.values[i, j] = -1
+                else:
+                    self.values[i, j] = pixels[(i, j)]
         del pixels
 
     # Write an image
@@ -32,21 +34,27 @@ class Image:
         pixels = img.load()
         for i in range(self.dim[0]):
             for j in range(self.dim[1]):
-                if self.values[i,j] == -1 :
-                    pixels[(i,j)] = 0
-                else :
-                    pixels[(i,j)] = self.values[i,j]
+                if self.values[i, j] == -1:
+                    pixels[(i, j)] = 0
+                else:
+                    pixels[(i, j)] = self.values[i, j]
         img.save(fileName)
         del pixels
 
     def add_noise(self, noiseThreshold):
         for i in range(self.dim[0]):
             for j in range(self.dim[1]):
-                if random.random() <= noiseThreshold :
-                    self.values[i,j] *= -1
+                if random.random() <= noiseThreshold:
+                    self.values[i, j] *= -1
 
     def get_copy(self):
         img = Image()
         img.dim = self.dim
         img.values = self.values.copy()
         return img
+
+    def get_vec_dim(self):
+        return self.dim[0]*self.dim[1]
+
+    def get_hnet_ready(self):
+        return self.values.copy().reshape([1, self.get_vec_dim()])

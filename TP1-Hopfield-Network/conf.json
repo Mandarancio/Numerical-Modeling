@@ -1,0 +1,13 @@
+{
+  "base_path":"img20/",
+  "trainging_list":[
+    "bird.gif",
+    "crab.gif",
+    "fish.gif",
+    "myth.gif"
+  ],
+  "noise": 0.00,
+  "vsize": 400,
+  "isize": [20, 20],
+  "times": 1000
+}
