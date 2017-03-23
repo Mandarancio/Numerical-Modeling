@@ -1,0 +1,27 @@
+{
+  "mode":"noise",
+  "experiences":[
+    {
+      "name": "5 images",
+      "error_method": "normal",
+      "base_path":"img20/",
+      "trainging_list":[
+        "bird.gif",
+        "crab.gif",
+        "fish.gif",
+        "myth.gif",
+        "head.gif"
+      ],
+      "noise": {
+        "min" : 0,
+        "max" : 1.0,
+        "steps" : 100
+      },
+      "vsize": 400,
+      "isize": [20, 20],
+      "times": 200,
+      "qmatrix" : true
+    }
+  ],
+  "output": "report/error_"
+}

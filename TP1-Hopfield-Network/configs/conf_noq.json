@@ -1,0 +1,45 @@
+{
+  "mode":"noise",
+  "experiences":[
+    {
+      "name": "3 images",
+      "error_method": "inverse",
+      "base_path":"img20/",
+      "trainging_list":[
+        "bird.gif",
+        "crab.gif",
+        "fish.gif"
+      ],
+      "noise": {
+        "min" : 0,
+        "max" : 1.0,
+        "steps" : 100
+      },
+      "vsize": 400,
+      "isize": [20, 20],
+      "times": 400,
+      "qmatrix" : false
+    },
+    {
+      "name": "4 images",
+      "error_method": "inverse",
+      "base_path":"img20/",
+      "trainging_list":[
+        "bird.gif",
+        "crab.gif",
+        "fish.gif",
+        "myth.gif"
+      ],
+      "noise": {
+        "min" : 0,
+        "max" : 1.0,
+        "steps" : 100
+      },
+      "vsize": 400,
+      "isize": [20, 20],
+      "times": 400,
+      "qmatrix" : false
+    }
+  ],
+  "output": "report/error_noq_"
+}
