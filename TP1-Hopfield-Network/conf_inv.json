@@ -19,7 +19,8 @@
       },
       "vsize": 400,
       "isize": [20, 20],
-      "times": 200
+      "times": 200,
+      "qmatrix" : true
     }
   ],
   "output": "report/error_"

@@ -2,22 +2,26 @@ import numpy as np
 
 
 def error(a, b):
-    err = np.sum(np.abs(a-b))/a.size
+    err = np.sum(np.abs(a-b))/(2*a.size)
     return err
 
 
 def ierror(a, b):
-    err = np.sum(np.abs(a-b))/a.size
-    ierr = np.sum(np.abs(a+b))/a.size
+    err = np.sum(np.abs(a-b))/(2*a.size)
+    ierr = np.sum(np.abs(a+b))/(2*a.size)
     return err if err < ierr else ierr
     # return err
 
 
 class HopfieldNetwork:
-    def __init__(self, count=400):
+    def __init__(self, count=400, qmatrix=True):
         self.__state__ = np.ones([1, count])
         self.__weigths__ = np.zeros([count, count])
         self.__count__ = count
+        self.__qmatrix__ = qmatrix
+
+    def weigths(self):
+        return self.__weigths__
 
     def set_state(self, state):
         self.__state__ = state
@@ -27,7 +31,10 @@ class HopfieldNetwork:
         v = np.zeros([len(training_list), training_list[0].size])
         for i in range(0, len(training_list)):
             v[i, :] = training_list[i][:]
-        self.__weigths__ = v.T.dot(np.linalg.inv(v.dot(v.T))).dot(v)
+        if self.__qmatrix__:
+            self.__weigths__ = v.T.dot(np.linalg.inv(v.dot(v.T))).dot(v)
+        else:
+            self.__weigths__ = v.T.dot(v)
 
     def __F__(self, h):
         return np.sign(h)

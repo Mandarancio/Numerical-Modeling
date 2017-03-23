@@ -16,7 +16,8 @@
       },
       "vsize": 400,
       "isize": [20, 20],
-      "times": 200
+      "times": 200,
+      "qmatrix" : true
     },
     {
       "name": "3 images",
@@ -34,7 +35,8 @@
       },
       "vsize": 400,
       "isize": [20, 20],
-      "times": 200
+      "times": 200,
+      "qmatrix" : true
     },
     {
       "name": "4 images",
@@ -53,9 +55,9 @@
       },
       "vsize": 400,
       "isize": [20, 20],
-      "times": 200
-    }
-    ,
+      "times": 200,
+      "qmatrix" : true
+    },
     {
       "name": "5 images",
       "error_method": "inverse",
@@ -74,7 +76,8 @@
       },
       "vsize": 400,
       "isize": [20, 20],
-      "times": 200
+      "times": 200,
+      "qmatrix" : true
     }
   ],
   "output": "report/error_"

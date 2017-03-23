@@ -80,7 +80,8 @@ if __name__ == '__main__':
                 images.append(i)
                 tlist.append(i.get_hnet_ready())
 
-            hnet = hn.HopfieldNetwork(config['vsize'])
+            hnet = hn.HopfieldNetwork(config['vsize'],
+                                      qmatrix=config['qmatrix'])
             hnet.train(tlist)
 
             total = config['times']
@@ -131,8 +132,14 @@ if __name__ == '__main__':
                     images.append(i)
                     tlist.append(i.get_hnet_ready())
 
-                hnet = hn.HopfieldNetwork(config['vsize'])
+                hnet = hn.HopfieldNetwork(config['vsize'],
+                                          qmatrix=config['qmatrix'])
                 hnet.train(tlist)
+                plt.figure()
+                plt.imshow(hnet.weigths())
+                plt.savefig(mconfig['output'] + config['name'] + '-w' +
+                            str(n_imgs) + '.png')
+                plt.close()
 
                 total = config['times']
                 noise = config['noise']
@@ -152,7 +159,42 @@ if __name__ == '__main__':
 
             plot_results(x_imgs, error_ev, error_var, corr_class,
                          "N images", config['name'])
-            plt.savefig(mconfig['output'] +
+            plt.savefig(mconfig['output']+config['name'] + '_' +
                         str(config['noise'])
                         + '_' + str(n_imgs) + '.png')
+    elif mconfig['mode'] == 'test':
+        for config in mconfig['experiences']:
+            print('\n=== EXPERIENCE: "{}" ==='.format(config['name']))
+            images = []
+            tlist = []
+
+            for ip in config['trainging_list']:
+                i = Image(config['base_path']+ip)
+                images.append(i)
+                tlist.append(i.get_hnet_ready())
+
+            hnet = hn.HopfieldNetwork(config['vsize'],
+                                      qmatrix=config['qmatrix'])
+            hnet.train(tlist)
+
+            noise = config['noise']
+            error_f = hn.ierror if config['error_method'] == 'inverse'\
+                else hn.error
+            selected = Image(config['base_path']+config['selected'])
+
+            img = selected.get_copy()
+            img.add_noise(noise)
+            hnet.set_state(img.get_hnet_ready())
+            plt.figure()
+            plt.imshow(selected.values)
+            plt.savefig(mconfig['output']+config['name']+'_selected.png')
+            plt.figure()
+            plt.imshow(img.values)
+            plt.savefig(mconfig['output']+config['name']+'_noisy.png')
+            recovered, counter = hnet.loop(100)
+            plt.figure()
+            plt.imshow(recovered.reshape(config['isize']))
+            plt.savefig(mconfig['output']+config['name']+'_reconstructed.png')
+            print("converged after {} iterations".format(counter))
+
     plt.show()
