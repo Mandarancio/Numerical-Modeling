@@ -2,8 +2,15 @@ import numpy as np
 
 
 def error(a, b):
-    err = np.sum(np.abs(a-b))
+    err = np.sum(np.abs(a-b))/a.size
     return err
+
+
+def ierror(a, b):
+    err = np.sum(np.abs(a-b))/a.size
+    ierr = np.sum(np.abs(a+b))/a.size
+    return err if err < ierr else ierr
+    # return err
 
 
 class HopfieldNetwork:
@@ -17,10 +24,10 @@ class HopfieldNetwork:
 
     def train(self, training_list):
         self.__weigths__ = np.zeros([self.__count__, self.__count__])
-
-        for v in training_list:
-            self.__weigths__ += v.T*v
-        self.__weigths__ /= self.__count__
+        v = np.zeros([len(training_list), training_list[0].size])
+        for i in range(0, len(training_list)):
+            v[i, :] = training_list[i][:]
+        self.__weigths__ = v.T.dot(np.linalg.inv(v.dot(v.T))).dot(v)
 
     def __F__(self, h):
         return np.sign(h)

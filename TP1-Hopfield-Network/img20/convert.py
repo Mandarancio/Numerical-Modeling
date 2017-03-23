@@ -10,6 +10,6 @@ array = pygame.surfarray.array2d(img)
 
 for y in range(array.shape[1]):
     for x in range(array.shape[0]):
-        f.write(str(array[x,y]))
+        f.write(str(array[x, y]))
 
 f.close()
