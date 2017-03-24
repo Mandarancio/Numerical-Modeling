@@ -20,4 +20,5 @@ To run the script:
   "output" : "OUTPUT_FILE"
 }
  ```
+ possible modes are: ```test```, ```noise``` and ```nimages```.
  
