@@ -12,6 +12,9 @@ def ierror(a, b):
     return err if err < ierr else ierr
     # return err
 
+def diff(a, b):
+    err = np.sum(np.abs(a-b))
+    return err
 
 class HopfieldNetwork:
     def __init__(self, count=400, qmatrix=True):
@@ -56,7 +59,7 @@ class HopfieldNetwork:
         while counter < max and converged < 5:
             self.iterate()
             counter += 1
-            e = error(old_state, self.__state__)
+            e = diff(old_state, self.__state__)
             converged = converged+1 if (e == 0.0) else 0
             old_state = self.__state__.copy()
 

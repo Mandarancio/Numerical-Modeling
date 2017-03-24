@@ -64,7 +64,7 @@
       "vsize": 400,
       "isize": [20, 20],
       "times": 1000,
-      "noise" : 0.4,
+      "noise" : 0.2,
       "qmatrix" : false
     }
   ],
