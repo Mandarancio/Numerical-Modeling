@@ -1,0 +1,69 @@
+{
+  "mode":"test",
+  "experiences":[
+    {
+      "name": "3-images",
+      "error_method": "inverse",
+      "base_path":"img20/",
+      "trainging_list":[
+        "bird.gif",
+        "crab.gif",
+        "fish.gif"
+      ],
+      "selected" : "fish.gif",
+      "noise": 0.0,
+      "vsize": 400,
+      "isize": [20, 20],
+      "qmatrix" : false
+    },
+    {
+      "name": "3-images-noise",
+      "error_method": "inverse",
+      "base_path":"img20/",
+      "trainging_list":[
+        "bird.gif",
+        "crab.gif",
+        "fish.gif"
+      ],
+      "selected" : "crab.gif",
+      "noise": 0.2,
+      "vsize": 400,
+      "isize": [20, 20],
+      "qmatrix" : false
+    },
+    {
+      "name": "alphabet",
+      "error_method": "inverse",
+      "base_path":"alphabet/",
+      "trainging_list":[
+        "a.gif",
+        "b.gif",
+        "c.gif",
+        "d.gif",
+        "e.gif",
+        "f.gif",
+        "g.gif",
+        "h.gif",
+        "i.gif",
+        "l.gif",
+        "m.gif",
+        "n.gif",
+        "o.gif",
+        "p.gif",
+        "q.gif",
+        "r.gif",
+        "s.gif",
+        "t.gif",
+        "u.gif",
+        "v.gif",
+        "z.gif"
+      ],
+      "selected" : "m.gif",
+      "noise": 0.2,
+      "vsize": 400,
+      "isize": [20, 20],
+      "qmatrix" : true
+    }
+  ],
+  "output" : "report/base_test_"
+}
