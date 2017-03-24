@@ -5,5 +5,19 @@ simple 20x20 noisy images.
 
 To run the script:
 ```
- python3 main CONFIG_FILE.json
+ python3 main.py CONFIG_FILE.json
  ```
+
+ The configurations files used for the report are stored in the folder configs/
+
+ the config file has this structure:
+ ```json
+{
+  "mode": "MODE",
+  "experiences":[
+    ...
+  ],
+  "output" : "OUTPUT_FILE"
+}
+ ```
+ 
