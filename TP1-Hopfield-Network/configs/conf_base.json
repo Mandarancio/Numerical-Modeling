@@ -78,6 +78,43 @@
       "isize": [20, 20],
       "times": 200,
       "qmatrix" : true
+    },
+    {
+      "name": "alphabet",
+      "error_method": "inverse",
+      "base_path":"alphabet/",
+      "trainging_list":[
+        "a.gif",
+        "b.gif",
+        "c.gif",
+        "d.gif",
+        "e.gif",
+        "f.gif",
+        "g.gif",
+        "h.gif",
+        "i.gif",
+        "l.gif",
+        "m.gif",
+        "n.gif",
+        "o.gif",
+        "p.gif",
+        "q.gif",
+        "r.gif",
+        "s.gif",
+        "t.gif",
+        "u.gif",
+        "v.gif",
+        "z.gif"
+      ],
+      "vsize": 400,
+      "isize": [20, 20],
+      "times": 400,
+      "noise": {
+        "min" : 0,
+        "max" : 1.0,
+        "steps" : 100
+      },
+      "qmatrix" : true
     }
   ],
   "output": "report/error_"
