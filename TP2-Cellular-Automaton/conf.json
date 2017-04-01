@@ -1,0 +1,8 @@
+{
+  "config":"configurations/StarGate.lif",
+  "config_version":"rle",
+  "plotmode":"animated",
+  "iterations":1000,
+  "output_path":"ploits/",
+  "mode":"gameOfLife"
+}
