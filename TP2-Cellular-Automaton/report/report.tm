@@ -104,7 +104,7 @@
     <item>Fixed value: the neighboors outside the matrix as a fixed value
     (ex: 0)
 
-    <item>Infinite matrix: the simulation matrix expand itself when some life
+    <item>Dynamic matrix: the simulation matrix expand itself when some life
     cells touch the border (often used for comple Game of Life configuration)
   </itemize>
 
@@ -172,20 +172,156 @@
 
   To summirize the system will do the following (for the parity case):
 
-  <big-figure|<tabular|<tformat|<cwith|1|-1|1|-1|cell-width|1em>|<cwith|1|-1|1|-1|cell-hmode|exact>|<cwith|1|-1|1|-1|cell-height|1em>|<cwith|1|-1|1|-1|cell-vmode|exact>|<cwith|1|-1|1|-1|cell-tborder|1ln>|<cwith|1|-1|1|-1|cell-bborder|1ln>|<cwith|1|-1|1|-1|cell-lborder|1ln>|<cwith|1|-1|1|-1|cell-rborder|1ln>|<cwith|5|5|2|2|cell-background|black>|<cwith|1|1|5|5|cell-background|black>|<cwith|3|3|2|2|cell-background|black>|<cwith|4|4|3|3|cell-background|black>|<cwith|1|1|1|1|cell-background|black>|<cwith|3|3|4|4|cell-background|black>|<cwith|3|3|3|3|cell-background|red>|<table|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>||<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>>>><math|\<longrightarrow\>><python|n=0b11101><math|\<longrightarrow\>><python|rule[n]=1><math|\<longminus\>\<rightarrow\>><tabular|<tformat|<cwith|1|-1|1|-1|cell-width|1em>|<cwith|1|-1|1|-1|cell-hmode|exact>|<cwith|1|-1|1|-1|cell-height|1em>|<cwith|1|-1|1|-1|cell-vmode|exact>|<cwith|1|-1|1|-1|cell-tborder|1ln>|<cwith|1|-1|1|-1|cell-bborder|1ln>|<cwith|1|-1|1|-1|cell-lborder|1ln>|<cwith|1|-1|1|-1|cell-rborder|1ln>|<cwith|3|3|2|2|cell-background|black>|<cwith|4|4|3|3|cell-background|black>|<cwith|3|3|4|4|cell-background|black>|<cwith|3|3|3|3|cell-background|black>|<cwith|2|2|3|3|cell-background|black>|<cwith|2|2|2|2|cell-background|black>|<cwith|1|1|1|-1|cell-background|>|<cwith|5|5|1|-1|cell-background|>|<cwith|2|2|4|4|cell-background|black>|<cwith|1|1|1|1|cell-background|black>|<cwith|1|1|5|5|cell-background|black>|<cwith|3|3|5|5|cell-background|black>|<cwith|3|3|1|1|cell-background|black>|<cwith|4|4|2|2|cell-background|black>|<cwith|4|4|4|4|cell-background|>|<cwith|5|5|1|1|cell-background|black>|<table|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>||<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>>>>|example
+  <big-figure|<tabular|<tformat|<cwith|1|-1|1|-1|cell-width|1em>|<cwith|1|-1|1|-1|cell-hmode|exact>|<cwith|1|-1|1|-1|cell-height|1em>|<cwith|1|-1|1|-1|cell-vmode|exact>|<cwith|1|-1|1|-1|cell-tborder|1ln>|<cwith|1|-1|1|-1|cell-bborder|1ln>|<cwith|1|-1|1|-1|cell-lborder|1ln>|<cwith|1|-1|1|-1|cell-rborder|1ln>|<cwith|5|5|2|2|cell-background|black>|<cwith|1|1|5|5|cell-background|black>|<cwith|3|3|2|2|cell-background|black>|<cwith|4|4|3|3|cell-background|black>|<cwith|1|1|1|1|cell-background|black>|<cwith|3|3|4|4|cell-background|black>|<cwith|3|3|3|3|cell-background|red>|<table|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>||<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>>>><math|\<longrightarrow\>><python|n=0b11101
+  (29)><math|\<longrightarrow\>><python|rule[n]=1><math|\<longminus\>\<rightarrow\>><tabular|<tformat|<cwith|1|-1|1|-1|cell-width|1em>|<cwith|1|-1|1|-1|cell-hmode|exact>|<cwith|1|-1|1|-1|cell-height|1em>|<cwith|1|-1|1|-1|cell-vmode|exact>|<cwith|1|-1|1|-1|cell-tborder|1ln>|<cwith|1|-1|1|-1|cell-bborder|1ln>|<cwith|1|-1|1|-1|cell-lborder|1ln>|<cwith|1|-1|1|-1|cell-rborder|1ln>|<cwith|3|3|2|2|cell-background|black>|<cwith|4|4|3|3|cell-background|black>|<cwith|3|3|4|4|cell-background|black>|<cwith|3|3|3|3|cell-background|black>|<cwith|2|2|3|3|cell-background|black>|<cwith|2|2|2|2|cell-background|black>|<cwith|1|1|1|-1|cell-background|>|<cwith|5|5|1|-1|cell-background|>|<cwith|2|2|4|4|cell-background|black>|<cwith|1|1|1|1|cell-background|black>|<cwith|1|1|5|5|cell-background|black>|<cwith|3|3|5|5|cell-background|black>|<cwith|3|3|1|1|cell-background|black>|<cwith|4|4|2|2|cell-background|black>|<cwith|4|4|4|4|cell-background|>|<cwith|5|5|1|1|cell-background|black>|<table|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>||<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>>>>|example
   of iteration>
+
+  To avoid spatial loop I used first the function
+  <with|font-shape|italic|numpy.roll> to compute the neighborhood status and
+  then a <with|font-shape|italic|lambda> function vectorialized using the
+  function <with|font-shape|italic|numpy.vectorize()> to apply the rules.
 
   Moreover the python code suport both the <with|font-shape|italic|lif> and
   the more complete <with|font-shape|italic|rle> file format (as most of the
   existing configuration are in this format).
 
+  To configurate the simulator I chose to use a <with|font-shape|italic|json>
+  file on this form:
+
+  <\python-code>
+    {
+
+    \ \ "config":"configurations/UnitCell.rle",
+
+    \ \ "config_version":"rle", # or lif
+
+    \ \ "plotmode":"stored", # or animated
+
+    \ \ "iterations":500,
+
+    \ \ "output_path":"plots/",
+
+    \ \ "mode":"gameOfLife" # or parityRule
+
+    }
+  </python-code>
+
   <section|Results>
 
-  \;
+  <subsection|Game of Life>
 
-  \;
+  After implementing the CA and the presented rules, I tested it on a known
+  stable configuration of the <with|font-shape|italic|Game of Life>:
 
-  \;
+  <big-figure|<tabular|<tformat|<cwith|1|-1|1|-1|cell-width|1em>|<cwith|1|-1|1|-1|cell-hmode|exact>|<cwith|1|-1|1|-1|cell-height|1em>|<cwith|1|-1|1|-1|cell-vmode|exact>|<cwith|1|-1|1|-1|cell-tborder|1ln>|<cwith|1|-1|1|-1|cell-bborder|1ln>|<cwith|1|-1|1|-1|cell-lborder|1ln>|<cwith|1|-1|1|-1|cell-rborder|1ln>|<cwith|3|3|2|2|cell-background|black>|<cwith|4|4|3|3|cell-background|black>|<cwith|3|3|3|3|cell-background|black>|<cwith|5|5|1|-1|cell-background|>|<cwith|4|4|2|2|cell-background|black>|<cwith|1|-1|1|1|cell-background|>|<cwith|1|2|1|-1|cell-background|>|<cwith|2|4|4|5|cell-background|>|<table|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>||<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>|<row|<cell|>|<cell|>|<cell|>|<cell|>|<cell|>>>>>|a
+  stable configuration for Game of Life rules >
+
+  The results of this first simulation (configuration:
+  <with|font-shape|italic|configurations/tests/stable.rle>) is stable as
+  predicted and the central square does not evolve in time:
+
+  <big-figure|<tabular|<tformat|<table|<row|<cell|<image|../plots/stable/it_0001.png|90pt|70pt||>>|<cell|<image|../plots/stable/it_0002.png|90pt|70pt||>>>|<row|<cell|<image|../plots/stable/it_0003.png|90pt|70pt||>>|<cell|<image|../plots/stable/it_0003.png|90pt|70pt||>>>>>>|first
+  4 iterations of the simulation of a stable configuration >
+
+  After this first succesfull test I wanted to a more interesting and dynamic
+  configuration, in particular a classical <with|font-shape|italic|Game of
+  Life >configuration is the <with|font-shape|italic|glider gun>:
+
+  <\big-figure|<image|../imgs/Game_of_life_glider_gun.png|228pt|66pt||>>
+    <with|font-shape|italic|Glider Gun> configuration
+  </big-figure>
+
+  The results of this simulation (configuration:
+  <with|font-shape|italic|configurations/tests/glidergun.rle>) is as expected
+  a periodical structure (the cannon) firing periodically the gliders (gif:
+  <with|font-shape|italic|gifs/glidergun.gif>):
+
+  <big-figure|<tabular|<tformat|<table|<row|<cell|<image|../plots/glidergun/it_0000.png|90pt|70pt||>>|<cell|<image|../plots/glidergun/it_0005.png|90pt|70pt||>>|<cell|<image|../plots/glidergun/it_0015.png|90pt|70pt||>>|<cell|<image|../plots/glidergun/it_0020.png|90pt|70pt||>>>|<row|<cell|<image|../plots/glidergun/it_0025.png|90pt|70pt||>>|<cell|<image|../plots/glidergun/it_0030.png|90pt|70pt||>>|<cell|<image|../plots/glidergun/it_0035.png|90pt|70pt||>>|<cell|<image|../plots/glidergun/it_0040.png|90pt|70pt||>>>>>>|first
+  40 iterations of the simulation of a <with|font-shape|italic|glider gun> (5
+  steps per image)>
+
+  Using a combination of <with|font-shape|italic|cannons> and other
+  oscillator is possible to create very complex structures, like clocks,
+  prime numbers calculator and more. However to simulate this kind of
+  structure huge matrix are demanded (or better dynamic matrix, not
+  implemented in my code) and due the relativly poor display (using
+  <with|font-shape|italic|matplotlib>) performance is impossible to run
+  those.
+
+  However I execute some smaller (<math|500\<times\>500>, 4ms per step)
+  interesting configurations as the <with|font-shape|italic|UnitCell>
+  (<with|font-shape|italic|configuration/UnitCell.rle>) that with an infinite
+  matrix is able to copy itself (gif: <with|font-shape|italic|gifs/unitcell.gif>):
+
+  <big-figure|<image|../plots/unitcell/it_0100.png|920px|690px||>|<with|font-shape|italic|UnitCell>
+  configuration>
+
+  <subsection|Parity Rule>
+
+  Also using the <with|font-shape|italic|Parity Rule> generate interesting
+  results, in particular it creates many periodical structure like
+  (<with|font-shape|italic|configurations/tests/letter.rle)>:
+
+  <big-figure|<tabular|<tformat|<table|<row|<cell|<image|../plots/letters/it_0000.png|90pt|70pt||>>|<cell|<image|../plots/letters/it_0004.png|90pt|70pt||>>>|<row|<cell|<image|../plots/letters/it_0008.png|90pt|70pt||>>|<cell|<image|../plots/letters/it_0012.png|90pt|70pt||>>>>>>|first
+  12 iterations (4 steps per image) of the simulation of a simple
+  configuration>
+
+  A more interesesting and bigger simulation (<math|200\<times\>200>) give
+  the following pattern (<with|font-shape|italic|configurations/tests/hugeparity.rle>):
+
+  <\big-figure>
+    <tabular|<tformat|<cwith|1|-1|1|1|cell-halign|c>|<table|<row|<cell|<tabular|<tformat|<table|<row|<cell|<image|../plots/party4/it_0000.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0010.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0020.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0030.png|90pt|70pt||>>>|<row|<cell|<image|../plots/party4/it_0040.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0050.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0060.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0070.png|90pt|70pt||>>>>>>>>|<row|<cell|<image|../plots/party4/it_0090.png|920px|690px||>>>>>><tabular|<tformat|<table|<row|<cell|>>>>>
+
+    \;
+
+    \;
+  </big-figure|first 90 iterations of the simulation of a
+  <with|font-shape|italic|glider gun> (10 steps per image)>
+
+  This results are obtained beacouse in <math|2<rsup|>> iterations (without
+  interferences) the pattern is copied in 4 new positions (gif:
+  <with|font-shape|italic|gifs/parity4.gif>). This results can be
+  mathematically proved, with a empty m<math|>atrix with a only cell alive in
+  the position <math|i,j> at the second iteration:
+
+  <\equation*>
+    \<psi\><rsub|2><around*|(|i,j|)>=0<rsub|i+1,j>\<oplus\>0<rsub|i-1,j>\<oplus\>0<rsub|i,j+1>\<oplus\>0<rsub|i,j-1>=0
+  </equation*>
+
+  <\equation*>
+    \<psi\><rsub|2><around*|(|i+1,j|)>=0<rsub|i+2,j>\<oplus\>1<rsub|i,j>\<oplus\>0<rsub|i+1,j+1>\<oplus\>0<rsub|i+1,j-1>=1
+  </equation*>
+
+  <\equation*>
+    \<psi\><rsub|2><around*|(|i-1,j|)>=1<rsub|i,j>\<oplus\>0<rsub|i-1,j>\<oplus\>0<rsub|i-1,j+1>\<oplus\>0<rsub|i-1,j-1>=1
+  </equation*>
+
+  <\equation*>
+    \<psi\><rsub|2><around*|(|i,j+1|)>=0<rsub|i+1,j+1>\<oplus\>0<rsub|i-1,j+1>\<oplus\>0<rsub|i,j+2>\<oplus\>1<rsub|i,j>=1
+  </equation*>
+
+  <\equation*>
+    \<psi\><rsub|2><around*|(|i,j-1|)>=0<rsub|i+1,j-1>\<oplus\>0<rsub|i-1,j-1>\<oplus\>1<rsub|i,j>\<oplus\>0<rsub|i,j-2>=1
+  </equation*>
+
+  This pattern is repeated at every iteration producing the result expected.
+  Using this result it could be possible to compute in advance the status of
+  the automaton, however this is more complex with the periodic border
+  condition we implemented as when the border are reached the structure will
+  start to present some interferences (as in figure 11) and it will start to
+  repeat (regressing to the initial status) itself.
+
+  <subsection|Conclusion>
+
+  In conclusion the overall performance of the implementation are acceptable,
+  and the bottleneck of the system is due to the poor graphic performance of
+  <with|font-shape|italic|matplotlib> and can be solved using opengl or other
+  graphical library.\ 
+
+  The two rules implemented have both interesting behaviors but due to the
+  lack of the implementation of the <with|font-shape|italic|infinite matrix>
+  border condition is not possible to simulate \ many of the more interesting
+  configurations.
 </body>
 
 <initial|<\collection>
@@ -194,15 +330,25 @@
 <\references>
   <\collection>
     <associate|auto-1|<tuple|1|1>>
-    <associate|auto-10|<tuple|3|?>>
+    <associate|auto-10|<tuple|3|3>>
+    <associate|auto-11|<tuple|3.1|3>>
+    <associate|auto-12|<tuple|5|3>>
+    <associate|auto-13|<tuple|6|3>>
+    <associate|auto-14|<tuple|7|4>>
+    <associate|auto-15|<tuple|8|4>>
+    <associate|auto-16|<tuple|9|4>>
+    <associate|auto-17|<tuple|3.2|5>>
+    <associate|auto-18|<tuple|10|5>>
+    <associate|auto-19|<tuple|11|5>>
     <associate|auto-2|<tuple|1|1>>
+    <associate|auto-20|<tuple|3.3|6>>
     <associate|auto-3|<tuple|1.1|1>>
-    <associate|auto-4|<tuple|1.2|2>>
+    <associate|auto-4|<tuple|1.2|1>>
     <associate|auto-5|<tuple|1.3|2>>
     <associate|auto-6|<tuple|2|2>>
     <associate|auto-7|<tuple|2|2>>
-    <associate|auto-8|<tuple|3|?>>
-    <associate|auto-9|<tuple|4|?>>
+    <associate|auto-8|<tuple|3|2>>
+    <associate|auto-9|<tuple|4|3>>
   </collection>
 </references>
 
@@ -210,6 +356,36 @@
   <\collection>
     <\associate|figure>
       <tuple|normal|most common type of neighborhood|<pageref|auto-2>>
+
+      <tuple|normal|neighborhood indexing|<pageref|auto-7>>
+
+      <tuple|normal|binary representation|<pageref|auto-8>>
+
+      <tuple|normal|example of iteration|<pageref|auto-9>>
+
+      <tuple|normal|a stable configuration for Game of Life rules
+      |<pageref|auto-12>>
+
+      <tuple|normal|first 4 iterations of the simulation of a stable
+      configuration |<pageref|auto-13>>
+
+      <\tuple|normal>
+        <with|font-shape|<quote|italic>|Glider Gun> configuration
+      </tuple|<pageref|auto-14>>
+
+      <tuple|normal|first 40 iterations of the simulation of a
+      <with|font-shape|<quote|italic>|glider gun> (5 steps per
+      image)|<pageref|auto-15>>
+
+      <tuple|normal|<with|font-shape|<quote|italic>|UnitCell>
+      configuration|<pageref|auto-16>>
+
+      <tuple|normal|first 12 iterations (4 steps per image) of the simulation
+      of a simple configuration|<pageref|auto-18>>
+
+      <tuple|normal|first 90 iterations of the simulation of a
+      <with|font-shape|<quote|italic>|glider gun> (10 steps per
+      image)|<pageref|auto-19>>
     </associate>
     <\associate|toc>
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|1<space|2spc>Introduction
@@ -234,7 +410,19 @@
 
       <vspace*|1fn><with|font-series|<quote|bold>|math-font-series|<quote|bold>|3<space|2spc>Results>
       <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
-      <no-break><pageref|auto-7><vspace|0.5fn>
+      <no-break><pageref|auto-10><vspace|0.5fn>
+
+      <with|par-left|<quote|1tab>|3.1<space|2spc>Game of Life
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-11>>
+
+      <with|par-left|<quote|1tab>|3.2<space|2spc>Parity Rule
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-17>>
+
+      <with|par-left|<quote|1tab>|3.3<space|2spc>Conclusion
+      <datoms|<macro|x|<repeat|<arg|x>|<with|font-series|medium|<with|font-size|1|<space|0.2fn>.<space|0.2fn>>>>>|<htab|5mm>>
+      <no-break><pageref|auto-20>>
     </associate>
   </collection>
 </auxiliary>

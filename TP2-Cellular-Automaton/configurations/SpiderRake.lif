@@ -43,13 +43,13 @@ bo5bobo5bobo3bo$406boo6bobo6boo$403boo9bobo9boo$403booboo15booboo$407b
 o15bo!
 p360 Spider Rake
 
-Nine gliders travel in a figure-8 loop, trapped by c/5 spiders, liberating one 
-glider each time. The gliders in the loop collide with the prepulsar part of a 
-c/5 spider combo to form a Herschel traveling downwards. The Herschel is 
-guided by other spiders, producing a glider with the correct parity to form a 
-large period spaceship - in this case, p3240, which can be divided by 9 to 
-form a p360 spaceship. The Herschel on the left side is then killed, but the 
-Herschel on the right side is pushed a little further to liberate one more 
+Nine gliders travel in a figure-8 loop, trapped by c/5 spiders, liberating one
+glider each time. The gliders in the loop collide with the prepulsar part of a
+c/5 spider combo to form a Herschel traveling downwards. The Herschel is
+guided by other spiders, producing a glider with the correct parity to form a
+large period spaceship - in this case, p3240, which can be divided by 9 to
+form a p360 spaceship. The Herschel on the left side is then killed, but the
+Herschel on the right side is pushed a little further to liberate one more
 glider before it is killed.
 
 On the far right side, another c/5 spider-prepulsar spaceship reflects the

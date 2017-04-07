@@ -6,7 +6,7 @@ import matplotlib.animation as animation
 def load_config(path, version='lif'):
     matrix = []
     with open(path) as f:
-        if version == 'lif':
+        if version  == 'lif':
             for l in f.readlines():
                 p = l.replace('\n', '')
                 if not p.startswith('#'):
@@ -85,16 +85,18 @@ class CellularAutomaton:
         self.__h__ = initial_state.shape[1]
         self.__matrix__ = initial_state.copy()
         self.__rules__ = rules
+        rule_mapper = lambda t: self.__rules__[t]
+        self.__rules_mapper__ = np.vectorize(rule_mapper)
         self.__t__ = 0
 
-    def accumulate(self,  neighborhood='vonNeumann'):
+    def accumulate(self,  neighborhood='parityRule'):
         k = self.__matrix__.copy()
         k += np.roll(self.__matrix__, 1, axis=0) << 1
         k += np.roll(self.__matrix__, 1, axis=1) << 2
         k += np.roll(self.__matrix__, -1, axis=0) << 3
         k += np.roll(self.__matrix__, -1, axis=1) << 4
 
-        if neighborhood != 'vonNeumann':
+        if neighborhood != 'parityRule':
             k += np.roll(np.roll(self.__matrix__, 1, axis=0), 1, axis=1) << 5
             k += np.roll(np.roll(self.__matrix__, 1, axis=0), -1, axis=1) << 6
             k += np.roll(np.roll(self.__matrix__, -1, axis=0), 1, axis=1) << 7
@@ -102,11 +104,9 @@ class CellularAutomaton:
         return k
 
     def apply_rules(self, m):
-        for rule in self.__rules__:
-            m[m == rule] = self.__rules__[rule]
-        return m
+        return self.__rules_mapper__(m)
 
-    def step(self, neighborhood='vonNeumann'):
+    def step(self, neighborhood='parityRule'):
         self.__matrix__ = self.apply_rules(self.accumulate(neighborhood))
         self.__t__ += 1
         return self.__matrix__
@@ -138,6 +138,8 @@ class CellularAutomaton:
 if __name__ == '__main__':
     import sys
     import json
+    import time
+
     argv = sys.argv
     if len(argv) < 2:
         print('  Usage: CellularAutomaton <CONFIG.JSON>')
@@ -155,6 +157,10 @@ if __name__ == '__main__':
         im = plt.imshow(ca.state(), animated=True)
 
         def updatefig(*args):
+            ca.step(neighborhood=config['mode'])
+            ca.step(neighborhood=config['mode'])
+            ca.step(neighborhood=config['mode'])
+
             im.set_array(ca.step(neighborhood=config['mode']))
             return im,
 
@@ -163,7 +169,12 @@ if __name__ == '__main__':
         plt.show()
     else:
         ca.plot(save=True, auto_close=True, base_path=config['output_path'])
+        tot_time = 0
         for i in range(0, config['iterations']):
+            t = time.time()
             ca.step(neighborhood=config['mode'])
+            tot_time += (time.time()-t)
             ca.plot(save=True, auto_close=True,
                     base_path=config['output_path'])
+        print('total time: {}'.format(tot_time))
+        print('avg time: {}'.format(tot_time/config['iterations']))

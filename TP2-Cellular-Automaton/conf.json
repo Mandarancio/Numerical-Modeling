@@ -1,8 +1,8 @@
 {
-  "config":"configurations/parity3.lif",
+  "config":"configurations/tests/letter.rle",
   "config_version":"rle",
-  "plotmode":"save",
-  "iterations":100,
-  "output_path":"plots/",
-  "mode":"vonNeumann"
+  "plotmode":"animated",
+  "iterations":20,
+  "output_path":"plots/letters/",
+  "mode":"parityRule"
 }
