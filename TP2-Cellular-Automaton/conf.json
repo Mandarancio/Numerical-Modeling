@@ -1,8 +1,8 @@
 {
-  "config":"configurations/StarGate.lif",
+  "config":"configurations/parity3.lif",
   "config_version":"rle",
-  "plotmode":"animated",
-  "iterations":1000,
-  "output_path":"ploits/",
-  "mode":"gameOfLife"
+  "plotmode":"save",
+  "iterations":100,
+  "output_path":"plots/",
+  "mode":"vonNeumann"
 }

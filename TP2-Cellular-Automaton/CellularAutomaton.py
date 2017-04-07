@@ -10,21 +10,13 @@ def load_config(path, version='lif'):
             for l in f.readlines():
                 p = l.replace('\n', '')
                 if not p.startswith('#'):
-                    if len(matrix) == 0:
-                        line = []
-                        for i in range(0, len(p)+2):
-                            line.append(0)
-                        matrix.append(line)
-                    line = [0]
                     for i in range(0, len(p)):
                         line.append(1 if p[i] == '*' else 0)
-                    line.append(0)
                     matrix.append(line)
-            matrix.append(matrix[-1])
             return np.array(matrix)
         elif version == 'rle':
-            y = 1
-            x = 1
+            y = 0
+            x = 0
             init = False
             for l in f.readlines():
                 p = l.replace('\n', '')
@@ -32,8 +24,8 @@ def load_config(path, version='lif'):
                     if p.startswith('x'):
                         p = p.replace(' ', '')
                         p = p.split(',')
-                        w = int(p[0].split('=')[1])+2
-                        h = int(p[1].split('=')[1])+2
+                        w = int(p[0].split('=')[1])
+                        h = int(p[1].split('=')[1])
                         matrix = np.zeros([h, w], dtype=int)
                         init = True
                     elif init:
@@ -53,7 +45,7 @@ def load_config(path, version='lif'):
                                 if len(t) > 0:
                                     c = int(t)
                                 y += c
-                                x = 1
+                                x = 0
                                 t = ''
                             elif p[i] == '!':
                                 return matrix
@@ -64,14 +56,26 @@ def load_config(path, version='lif'):
 
 def game_of_life_rules():
     rules = {}
-    max_vals = (2**9)-1
-    for i in range(0, max_vals+1):
+    max_vals = (2**9)
+    for i in range(0, max_vals):
         count = bin(i).count('1')
         if i % 2 == 0:
             '''centrall cell is dead'''
             rules[i] = 1 if count == 3 else 0
         else:
             rules[i] = 1 if (count == 3 or count == 4) else 0
+    return rules
+
+
+def parity_rules():
+    rules = {}
+    max_vals = (2**5)
+    for i in range(0, max_vals):
+        count = bin(i << 1).count('1')
+        if count % 2 == 0:
+            rules[i] = 0
+        else:
+            rules[i] = 1
     return rules
 
 
@@ -82,11 +86,6 @@ class CellularAutomaton:
         self.__matrix__ = initial_state.copy()
         self.__rules__ = rules
         self.__t__ = 0
-        self.__mask__ = np.zeros([self.__w__, self.__h__], dtype=bool)
-        self.__mask__[0, :] = True
-        self.__mask__[:, 0] = True
-        self.__mask__[-1, :] = True
-        self.__mask__[:, -1] = True
 
     def accumulate(self,  neighborhood='vonNeumann'):
         k = self.__matrix__.copy()
@@ -95,7 +94,7 @@ class CellularAutomaton:
         k += np.roll(self.__matrix__, -1, axis=0) << 3
         k += np.roll(self.__matrix__, -1, axis=1) << 4
 
-        if neighborhood is not 'vonNeumann':
+        if neighborhood != 'vonNeumann':
             k += np.roll(np.roll(self.__matrix__, 1, axis=0), 1, axis=1) << 5
             k += np.roll(np.roll(self.__matrix__, 1, axis=0), -1, axis=1) << 6
             k += np.roll(np.roll(self.__matrix__, -1, axis=0), 1, axis=1) << 7
@@ -109,7 +108,6 @@ class CellularAutomaton:
 
     def step(self, neighborhood='vonNeumann'):
         self.__matrix__ = self.apply_rules(self.accumulate(neighborhood))
-        self.__matrix__[self.__mask__] = 0
         self.__t__ += 1
         return self.__matrix__
 
@@ -127,7 +125,6 @@ class CellularAutomaton:
     def plot(self, save=False, auto_close=False, base_path=''):
         plt.figure()
         m = self.__matrix__.copy()
-        # m[self.__mask__] = -1
         plt.imshow(m, cmap=plt.get_cmap('Vega20c'))
         title = 'Iteration {}'.format(self.__t__)
         plt.title(title)
@@ -147,7 +144,10 @@ if __name__ == '__main__':
         sys.exit(0)
     with open(argv[1]) as f:
         config = json.load(f)
-    rules = game_of_life_rules()
+    if config['mode'] == 'gameOfLife':
+        rules = game_of_life_rules()
+    else:
+        rules = parity_rules()
     glconfig = load_config(config['config'], config['config_version'])
     ca = CellularAutomaton(rules, glconfig)
     if config['plotmode'] == 'animated':
@@ -164,6 +164,6 @@ if __name__ == '__main__':
     else:
         ca.plot(save=True, auto_close=True, base_path=config['output_path'])
         for i in range(0, config['iterations']):
-            ca.step(config['mode'])
+            ca.step(neighborhood=config['mode'])
             ca.plot(save=True, auto_close=True,
                     base_path=config['output_path'])
