@@ -12,7 +12,7 @@
   models introduced in the 40s by Stanislaw Ulam and John von Neumann.\ 
 
   A Cellular Automaton consists in a matrix of <em|cells>, each one in
-  certtain status. At time <math|t=>0 the automaton is at initial status
+  certain status. At time <math|t=>0 the automaton is at initial status
   <math|s<around*|(|0|)>=s<rsub|0>> (fixed by the user), at each iteration
   the status of the cells will evolve according to some fixed <em|rules>
   <math|s<around*|(|t+1|)>=r<around*|(|s<around*|(|t|)>|)>>.\ 
@@ -39,18 +39,18 @@
     Moore
   </cell>>>>>|most common type of neighborhood>
 
-  For this TP we were asked to implement two different rule-sets for
-  theCellular Automaton, the <with|font-shape|italic|Game of Life> (based on
-  the Moore neighborhood) and the <with|font-shape|italic|Parity Rule> (based
-  on the von Neumann neighborhood)
+  For this TP we were asked to implement two different rule-sets for the
+  Cellular Automaton, the <with|font-shape|italic|Game of Life> (based on the
+  Moore neighborhood) and the <with|font-shape|italic|Parity Rule> (based on
+  the von Neumann neighborhood)
 
   <subsection|Game of Life>
 
   The <with|font-shape|italic|Game of Life> was proposed by J. H. Conway in
-  the 70s and is possibly the more knwon CA, and yet very simple. Each cell
-  can be alive (1) or dead (0) and has 8 neighboors (Moore neighborood); this
-  means that there are <math|2<rsup|9>> (8 neighboors + 1, the cell) possible
-  state of the neighboorod. The rules are very simple as well:
+  the 70s and is possibly the more known CA, and yet very simple. Each cell
+  can be alive (1) or dead (0) and has 8 neighbors (Moore neighborhood); this
+  means that there are <math|2<rsup|9>> (8 neighbors + 1, the cell) possible
+  state of the neighborhood. The rules are very simple as well:
 
   <\itemize>
     <item>if the cell is alive:
@@ -64,7 +64,7 @@
     <item>if the cell is dead:
 
     <\itemize>
-      <item>if there are exactly 3 living neighboors it lives
+      <item>if there are exactly 3 living neighbors it lives
 
       <item>else it stays died
     </itemize>
@@ -81,7 +81,7 @@
   well in the 70s. As in the <with|font-shape|italic|Game of Life> the state
   <math|\<psi\><rsub|t><around*|(|i,j|)>> of each cell
   <math|<around*|(|i,j|)>> as only two possible values. However this time the
-  neighborhood is composed by only 4 cells (van Neumann neighborood) and so
+  neighborhood is composed by only 4 cells (van Neumann neighborhood) and so
   there are <math|2<rsup|5>> possible configuration. The rule this time can
   be represented as a mathematical formula:
 
@@ -94,18 +94,19 @@
 
   <subsection|Border condition>
 
-  Due to the neture of this model the border condition of the simulation is
-  very important as we need to represent the neighboors of the cell close to
+  Due to the nature of this model the border condition of the simulation is
+  very important as we need to represent the neighbors of the cell close to
   the limit of the matrix, the possible configurations are mainly 3:
 
   <\itemize>
     <item>Periodic: the matrix repeat it self at the border creating a torus
 
-    <item>Fixed value: the neighboors outside the matrix as a fixed value
-    (ex: 0)
+    <item>Fixed value: the neighbors outside the matrix as a fixed value (ex:
+    0)
 
     <item>Dynamic matrix: the simulation matrix expand itself when some life
-    cells touch the border (often used for comple Game of Life configuration)
+    cells touch the border (often used for complex Game of Life
+    configuration)
   </itemize>
 
   <section|Implementation>
@@ -185,7 +186,7 @@
   the more complete <with|font-shape|italic|rle> file format (as most of the
   existing configuration are in this format).
 
-  To configurate the simulator I chose to use a <with|font-shape|italic|json>
+  To configure the simulator I chose to use a <with|font-shape|italic|json>
   file on this form:
 
   <\python-code>
@@ -223,9 +224,10 @@
   <big-figure|<tabular|<tformat|<table|<row|<cell|<image|../plots/stable/it_0001.png|90pt|70pt||>>|<cell|<image|../plots/stable/it_0002.png|90pt|70pt||>>>|<row|<cell|<image|../plots/stable/it_0003.png|90pt|70pt||>>|<cell|<image|../plots/stable/it_0003.png|90pt|70pt||>>>>>>|first
   4 iterations of the simulation of a stable configuration >
 
-  After this first succesfull test I wanted to a more interesting and dynamic
-  configuration, in particular a classical <with|font-shape|italic|Game of
-  Life >configuration is the <with|font-shape|italic|glider gun>:
+  After this first successfully test I wanted to a more interesting and
+  dynamic configuration, in particular a classical
+  <with|font-shape|italic|Game of Life >configuration is the
+  <with|font-shape|italic|glider gun>:
 
   <\big-figure|<image|../imgs/Game_of_life_glider_gun.png|228pt|66pt||>>
     <with|font-shape|italic|Glider Gun> configuration
@@ -244,7 +246,7 @@
   oscillator is possible to create very complex structures, like clocks,
   prime numbers calculator and more. However to simulate this kind of
   structure huge matrix are demanded (or better dynamic matrix, not
-  implemented in my code) and due the relativly poor display (using
+  implemented in my code) and due the relatively poor display (using
   <with|font-shape|italic|matplotlib>) performance is impossible to run
   those.
 
@@ -266,8 +268,8 @@
   12 iterations (4 steps per image) of the simulation of a simple
   configuration>
 
-  A more interesesting and bigger simulation (<math|200\<times\>200>) give
-  the following pattern (<with|font-shape|italic|configurations/tests/hugeparity.rle>):
+  A more interesting and bigger simulation (<math|200\<times\>200>) give the
+  following pattern (<with|font-shape|italic|configurations/tests/hugeparity.rle>):
 
   <\big-figure>
     <tabular|<tformat|<cwith|1|-1|1|1|cell-halign|c>|<table|<row|<cell|<tabular|<tformat|<table|<row|<cell|<image|../plots/party4/it_0000.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0010.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0020.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0030.png|90pt|70pt||>>>|<row|<cell|<image|../plots/party4/it_0040.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0050.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0060.png|90pt|70pt||>>|<cell|<image|../plots/party4/it_0070.png|90pt|70pt||>>>>>>>>|<row|<cell|<image|../plots/party4/it_0090.png|920px|690px||>>>>>><tabular|<tformat|<table|<row|<cell|>>>>>
@@ -278,38 +280,50 @@
   </big-figure|first 90 iterations of the simulation of a
   <with|font-shape|italic|glider gun> (10 steps per image)>
 
-  This results are obtained beacouse in <math|2<rsup|>> iterations (without
-  interferences) the pattern is copied in 4 new positions (gif:
+  This results are obtained because in <math|2<rsup|>> iterations (without
+  interference) the pattern is copied in 4 new positions (gif:
   <with|font-shape|italic|gifs/parity4.gif>). This results can be
-  mathematically proved, with a empty m<math|>atrix with a only cell alive in
-  the position <math|i,j> at the second iteration:
+  mathematically proved, with a empty m<math|>matrix with a only cell alive
+  in the position <math|i,j> at the second iteration:
 
   <\equation*>
-    \<psi\><rsub|2><around*|(|i,j|)>=0<rsub|i+1,j>\<oplus\>0<rsub|i-1,j>\<oplus\>0<rsub|i,j+1>\<oplus\>0<rsub|i,j-1>=0
+    \<psi\><rsub|t+1><around*|(|i,j|)>=\<psi\><rsub|t><around*|(|i+1,j|)>\<oplus\>\<psi\><rsub|t><around*|(|i-1,j|)>\<oplus\>\<psi\><rsub|t><around*|(|i,j+1|)>\<oplus\>\<psi\><rsub|t><around*|(|i,j-1|)>
+  </equation*>
+
+  decomposing each sub term to time <math|t-1>:
+
+  <\equation*>
+    \<psi\><rsub|t><around*|(|i+1,j|)>=<with|font-series|bold|\<psi\><rsub|t-1><around*|(|i+2,j|)>>\<oplus\><with|color|blue|\<psi\><rsub|t-1><around*|(|i,j|)>>\<oplus\><with|color|red|\<psi\><rsub|t-1><around*|(|i+1,j+1|)>>\<oplus\><with|color|dark
+    green|\<psi\><rsub|t-1><around*|(|i+1,j-1|)>>
   </equation*>
 
   <\equation*>
-    \<psi\><rsub|2><around*|(|i+1,j|)>=0<rsub|i+2,j>\<oplus\>1<rsub|i,j>\<oplus\>0<rsub|i+1,j+1>\<oplus\>0<rsub|i+1,j-1>=1
+    \<psi\><rsub|t><around*|(|i-1,j|)>=<with|color|blue|\<psi\><rsub|t-1><around*|(|i,j|)>>\<oplus\><with|font-series|bold|\<psi\><rsub|t-1><around*|(|i-2,j|)>>\<oplus\><with|color|orange|\<psi\><rsub|t-1><around*|(|i-1,j+1|)>>\<oplus\><with|color|magenta|\<psi\><rsub|t-1><around*|(|i-1,j-1|)>>
   </equation*>
 
   <\equation*>
-    \<psi\><rsub|2><around*|(|i-1,j|)>=1<rsub|i,j>\<oplus\>0<rsub|i-1,j>\<oplus\>0<rsub|i-1,j+1>\<oplus\>0<rsub|i-1,j-1>=1
+    \<psi\><rsub|t><around*|(|i,j+1|)>=<with|color|red|\<psi\><rsub|t-1><around*|(|i+1,j+1|)>>\<oplus\><with|color|orange|\<psi\><rsub|t-1><around*|(|i-1,j+1|)>>\<oplus\><with|font-series|bold|\<psi\><rsub|t-1><around*|(|i,j+2|)>>\<oplus\><with|color|blue|\<psi\><rsub|t-1><around*|(|i,j|)>>
   </equation*>
 
   <\equation*>
-    \<psi\><rsub|2><around*|(|i,j+1|)>=0<rsub|i+1,j+1>\<oplus\>0<rsub|i-1,j+1>\<oplus\>0<rsub|i,j+2>\<oplus\>1<rsub|i,j>=1
+    \<psi\><rsub|t><around*|(|i,j-1|)>=<with|color|dark
+    green|\<psi\><rsub|t-1><around*|(|i+1,j-1|)>>\<oplus\><with|color|magenta|\<psi\><rsub|t-1><around*|(|i-1,j-1|)>>\<oplus\><with|color|blue|\<psi\><rsub|t-1><around*|(|i,j|)>>\<oplus\><with|font-series|bold|\<psi\><rsub|t-1><around*|(|i,j-2|)>>
   </equation*>
+
+  in this composition I evidenced the common terms, as you can notice all
+  this terms appear in even number and as <math|a\<oplus\>a=0> all this terms
+  can be discarded and so we can rewrite the form:
 
   <\equation*>
-    \<psi\><rsub|2><around*|(|i,j-1|)>=0<rsub|i+1,j-1>\<oplus\>0<rsub|i-1,j-1>\<oplus\>1<rsub|i,j>\<oplus\>0<rsub|i,j-2>=1
+    \<psi\><rsub|t+1><around*|(|i,j|)>=\<psi\><rsub|<with|font-series|bold|t-1>><around*|(|i+<with|font-series|bold|2>,j|)>\<oplus\>\<psi\><rsub|<with|font-series|bold|t-1>><around*|(|i-<with|font-series|bold|2>,j|)>\<oplus\>\<psi\><rsub|<with|font-series|bold|t-1>><around*|(|i,j+<with|font-series|bold|2>|)>\<oplus\>\<psi\><rsub|<with|font-series|bold|t-1>><around*|(|i,j-<with|font-series|bold|2>|)>
   </equation*>
 
-  This pattern is repeated at every iteration producing the result expected.
-  Using this result it could be possible to compute in advance the status of
-  the automaton, however this is more complex with the periodic border
-  condition we implemented as when the border are reached the structure will
-  start to present some interferences (as in figure 11) and it will start to
-  repeat (regressing to the initial status) itself.
+  This implicate that pattern is repeated every 2 iteration producing the
+  result expected. Using this result it could be possible to compute in
+  advance the status of the automaton, however this is more complex with the
+  periodic border condition we implemented as when the border are reached the
+  structure will start to present some interference (as in figure 11) and it
+  will start to repeat (regressing to the initial status) itself.
 
   <subsection|Conclusion>
 
