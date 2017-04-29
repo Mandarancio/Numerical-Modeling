@@ -65,27 +65,32 @@ def circle(x, y):
 
 
 def circle2(x, y):
-    return ((x - (cx+2*r))**2 + (y - cy-r)**2) < r**2
+    return ((x - (cx + 2 * r))**2 + (y - cy - r)**2) < r**2
+
 
 def circle3(x, y):
-    return ((x - (cx+2*r))**2 + (y - cy+r)**2) < r**2
+    return ((x - (cx + 2 * r))**2 + (y - cy + r)**2) < r**2
 
-def square(x,y):
-    return (abs(y-cy)<r)*(abs(x-cx)<r)
-    
-def rect(x,y):
-    return (abs(y-cy)<r)*(abs(x-cx)<2*r)
+
+def square(x, y):
+    return (abs(y - cy) < r) * (abs(x - cx) < r)
+
+
+def rect(x, y):
+    return (abs(y - cy) < r) * (abs(x - cx) < 2 * r)
+
+
 obstacle = fromfunction(circle, (nx, ny))
-# double obstacle 
-#bstacle += fromfunction(circle2, (nx, ny))
+# double obstacle
+# obstacle += fromfunction(circle2, (nx, ny))
 # triple obstacle
-#obstacle += fromfunction(circle3, (nx, ny))
+# obstacle += fromfunction(circle3, (nx, ny))
 # square
 # obstacle = fromfunction(rect, (nx,ny))
 # rect
 # borders
-obstacle[:,0] = True
-obstacle[:,-1]= True
+obstacle[:, 0] = True
+obstacle[:, -1] = True
 # Initial velocity profile: almost zero, with a slight perturbation to trigger
 # the instability.
 
