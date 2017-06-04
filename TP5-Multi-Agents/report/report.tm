@@ -74,7 +74,7 @@
   where <math|<wide|x|\<bar\>>> is the current position and
   <math|<wide|c|\<bar\>>> is the center of the simulation.
 
-  <big-figure|<with|par-mode|center|<image|/home/martino/git/Numerical-Modeling/TP5-Agents/report/output_4_0.png|200pt|||>
+  <big-figure|<with|par-mode|center|<image|output_4_0.png|200pt|||>
   >|Nutrition density>
 
   <subsubsection|1 Bacteria Itinerary><label|bacteria-itinerary>
@@ -176,7 +176,8 @@
 
   In the longer run it appears that the saturation limit is higher as the
   attraction tent to concentrate the bacteria and to counterbalance the
-  constant speed problem.
+  constant speed problem, as well is possible to see that the concentration
+  at the center is as well faster.
 
   <subsubsection|Parallelization><label|parallelization>
 
